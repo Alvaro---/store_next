@@ -2,10 +2,19 @@
 import React from 'react'
 import styles from './joinLayout.module.scss'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Icon, Image } from 'semantic-ui-react'
+import { useAuth } from '@/hooks'
 // import Image from 'next/image'
 
 const JoinLayout = ({ children }) => {
+    const { user } = useAuth();
+    const router = useRouter();
+    if (user) {
+        router.push('/')
+        return <h3>Loading...</h3>
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.topBar}>
